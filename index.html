@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Babu 🎉</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      background: linear-gradient(
+        -45deg,
+        #0f172a,
+        #312e81,
+        #7e22ce,
+        #ec4899,
+        #0f172a
+      );
+      background-size:400% 400%;
+      animation:gradientBG 12s ease infinite;
+      position:relative;
+      padding:20px;
+    }
+
+    @keyframes gradientBG{
+      0%{
+        background-position:0% 50%;
+      }
+      50%{
+        background-position:100% 50%;
+      }
+      100%{
+        background-position:0% 50%;
+      }
+    }
+
+    /* Floating Glow Circles */
+    .circle{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(80px);
+      opacity:0.5;
+      animation:float 8s ease-in-out infinite;
+    }
+
+    .circle1{
+      width:250px;
+      height:250px;
+      background:#ff00aa;
+      top:-80px;
+      left:-80px;
+    }
+
+    .circle2{
+      width:300px;
+      height:300px;
+      background:#6d28d9;
+      bottom:-100px;
+      right:-100px;
+      animation-delay:2s;
+    }
+
+    @keyframes float{
+      0%,100%{
+        transform:translateY(0px);
+      }
+      50%{
+        transform:translateY(-30px);
+      }
+    }
+
+    /* Card */
+    .card{
+      width:100%;
+      max-width:420px;
+      padding:35px 28px;
+      border-radius:30px;
+      background:rgba(255,255,255,0.12);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(255,255,255,0.15);
+      text-align:center;
+      color:white;
+      box-shadow:
+        0 0 30px rgba(255,255,255,0.08),
+        0 0 60px rgba(168,85,247,0.25);
+      animation:fadeIn 1.3s ease;
+      position:relative;
+      z-index:2;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(25px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    .title{
+      font-size:2.4rem;
+      font-weight:800;
+      line-height:1.3;
+      background:linear-gradient(to right,#fff,#ffd6f7,#ffffff);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:glow 2s infinite alternate;
+    }
+
+    @keyframes glow{
+      from{
+        text-shadow:0 0 10px rgba(255,255,255,0.3);
+      }
+      to{
+        text-shadow:0 0 20px rgba(255,255,255,0.8);
+      }
+    }
+
+    .emoji{
+      font-size:70px;
+      margin-bottom:15px;
+      animation:bounce 2s infinite;
+    }
+
+    @keyframes bounce{
+      0%,100%{
+        transform:translateY(0);
+      }
+      50%{
+        transform:translateY(-12px);
+      }
+    }
+
+    .message{
+      margin-top:18px;
+      font-size:1rem;
+      line-height:1.8;
+      color:#f3f4f6;
+    }
+
+    .quote{
+      margin-top:20px;
+      font-size:0.95rem;
+      font-style:italic;
+      color:#d1d5db;
+    }
+
+    .btn{
+      margin-top:28px;
+      padding:14px 28px;
+      border:none;
+      border-radius:999px;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      color:white;
+      background:linear-gradient(to right,#ec4899,#8b5cf6);
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(236,72,153,0.4);
+    }
+
+    .btn:hover{
+      transform:scale(1.08);
+      box-shadow:0 12px 30px rgba(236,72,153,0.6);
+    }
+
+    .surprise{
+      margin-top:18px;
+      font-size:1.1rem;
+      font-weight:600;
+      color:#ffd6f7;
+      display:none;
+      animation:fadeIn 1s ease;
+    }
+
+    /* Floating Hearts */
+    .heart{
+      position:absolute;
+      color:rgba(255,255,255,0.2);
+      animation:hearts 10s linear infinite;
+      font-size:22px;
+    }
+
+    @keyframes hearts{
+      from{
+        transform:translateY(100vh) rotate(0deg);
+      }
+      to{
+        transform:translateY(-120vh) rotate(360deg);
+      }
+    }
+
+    @media(max-width:480px){
+      .title{
+        font-size:2rem;
+      }
+
+      .card{
+        padding:28px 20px;
+      }
+
+      .emoji{
+        font-size:60px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Background Glow -->
+  <div class="circle circle1"></div>
+  <div class="circle circle2"></div>
+
+  <!-- Floating Hearts -->
+  <div class="heart" style="left:10%; animation-duration:9s;">💖</div>
+  <div class="heart" style="left:30%; animation-duration:11s;">✨</div>
+  <div class="heart" style="left:50%; animation-duration:8s;">💜</div>
+  <div class="heart" style="left:70%; animation-duration:12s;">🎉</div>
+  <div class="heart" style="left:90%; animation-duration:10s;">💖</div>
+
+  <!-- Main Card -->
+  <div class="card">
+
+    <div class="emoji">🎂</div>
+
+    <h1 class="title">
+      Happy Birthday Babu 💖
+    </h1>
+
+    <p class="message">
+      Wishing you endless happiness, laughter,
+      love, success, and beautiful memories.
+      May your smile always shine brighter
+      than the stars ✨
+    </p>
+
+    <div style="font-size:55px; margin-top:20px;">
+      🎉🎈🎁
+    </div>
+
+    <p class="quote">
+      “Every moment with you is special.
+      Hope your birthday is just as amazing as you are.”
+    </p>
+
+    <button class="btn" onclick="celebrate()">
+      Click for Magic 🎊
+    </button>
+
+    <div class="surprise" id="surprise">
+      You are truly the best thing ever 💕
+    </div>
+
+  </div>
+
+  <script>
+    function celebrate() {
+
+      document.getElementById("surprise").style.display = "block";
+
+      // Main Blast
+      confetti({
+        particleCount: 180,
+        spread: 100,
+        origin: { y: 0.6 }
+      });
+
+      // Side Blasts
+      setTimeout(() => {
+        confetti({
+          particleCount: 120,
+          angle: 60,
+          spread: 90,
+          origin: { x: 0 }
+        });
+
+        confetti({
+          particleCount: 120,
+          angle: 120,
+          spread: 90,
+          origin: { x: 1 }
+        });
+      }, 400);
+
+      // Continuous Mini Confetti
+      let duration = 2000;
+      let end = Date.now() + duration;
+
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          spread: 70,
+          origin: { x: Math.random(), y: Math.random() - 0.2 }
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+
+    // Auto confetti on page load
+    window.onload = () => {
+      confetti({
+        particleCount: 120,
+        spread: 120,
+        origin: { y: 0.5 }
+      });
+    };
+  </script>
+
+</body>
+</html>
